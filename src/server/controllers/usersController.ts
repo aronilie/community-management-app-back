@@ -101,6 +101,28 @@ export const deleteUser = async (
     }
 };
 
-// export const login = (req: Request, res: Response) => {
-//     const credentials = userSchema(req.body);
-// };
+export const loginUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const credentials = req.body;
+
+    try {
+        const userFound = await UserModel.findOne({
+            userName: credentials.userName,
+            passwd: credentials.passwd,
+        });
+
+        if (!userFound) throw new Error("Invalid username or password.");
+
+        res.status(200).json(userFound);
+    } catch (error) {
+        const finalError = new CustomError(
+            400,
+            error.message,
+            "Error logging in."
+        );
+        next(finalError);
+    }
+};
