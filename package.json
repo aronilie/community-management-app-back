@@ -8,7 +8,7 @@
         "ts:dev": "tsc -w",
         "start": "node .",
         "start:dev": "nodemon -q",
-        "build": "npm run tsc"
+        "build": "npm run ts"
     },
     "keywords": [],
     "author": "",
