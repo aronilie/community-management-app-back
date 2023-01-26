@@ -1,4 +1,4 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
 export interface User {
     userName: string;
@@ -20,10 +20,7 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: false,
     },
-    orders: {
-        type: Object,
-        required: false,
-    },
+    receipts: [{ type: Schema.Types.ObjectId, ref: "Receipt" }],
 });
 
 export const UserModel = model("User", userSchema, "users");
