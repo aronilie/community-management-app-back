@@ -4,6 +4,7 @@ import express from "express";
 import { generalError, notFoundError } from "../errors/generalError";
 import usersRouter from "./routes/usersRouter";
 import productsRouter from "./routes/productsRouter";
+import receiptsRouter from "./routes/receiptsRouter";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
+app.use("/receipts", receiptsRouter);
 
 app.use(notFoundError);
 app.use(generalError);
