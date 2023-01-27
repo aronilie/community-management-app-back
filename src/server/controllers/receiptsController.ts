@@ -8,7 +8,9 @@ export const getAllReceipts = async (
     next: NextFunction
 ) => {
     try {
-        const receipts = await ReceiptModel.find();
+        const receipts = await ReceiptModel.find()
+            .populate("owner")
+            .populate("product");
         res.status(200).json({ receipts });
     } catch (error) {
         const finalError = new CustomError(
@@ -30,7 +32,9 @@ export const getReceiptsByUser = async (
     try {
         const receipts = await ReceiptModel.find({
             owner: id,
-        }).populate("owner");
+        })
+            .populate("owner")
+            .populate("product");
 
         res.status(200).json({ receipts });
     } catch (error) {
@@ -53,7 +57,9 @@ export const getReceiptsByProduct = async (
     try {
         const receipts = await ReceiptModel.find({
             product: id,
-        }).populate("product");
+        })
+            .populate("owner")
+            .populate("product");
 
         res.status(200).json({ receipts });
     } catch (error) {
