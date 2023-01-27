@@ -6,6 +6,7 @@ import {
     getUserById,
     loginUser,
     updateUser,
+    updateUserDebts,
 } from "../controllers/usersController";
 
 const usersRouter = express.Router();
@@ -21,5 +22,7 @@ usersRouter.post("/create", createUser);
 usersRouter.delete("/:id", deleteUser);
 
 usersRouter.post("/login", loginUser);
+
+usersRouter.put("/updateDebts/:id", updateUserDebts);
 
 export default usersRouter;
